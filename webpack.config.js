@@ -1,7 +1,6 @@
 /*
     ./webpack.config.js
 */
-const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -15,19 +14,28 @@ module.exports = {
     path: __dirname + '/dist',
     filename: 'index_bundle.js'
   },
+
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
+  },
+
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
+        exclude: /node_modules/,
+        enforce: "pre",
         loader: 'babel-loader',
-        exclude: /node_modules/
+
       },
       {
         test: /\.jsx$/,
+        exclude: /node_modules/,
+        enforce: "pre",
         loader: 'babel-loader',
-        exclude: /node_modules/
+
       }
-    ]
+    ],
   },
   plugins: [HtmlWebpackPluginConfig]
 };
