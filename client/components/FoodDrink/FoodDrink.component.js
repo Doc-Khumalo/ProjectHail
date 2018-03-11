@@ -16,19 +16,31 @@ class FoodDrink extends React.Component {
   handleClickFood(e) {
     e.preventDefault();
 
-    this.setState({
-      foodSelected: true,
-      drinkSelected: false,
-    })
+    if (this.state.foodSelected === false) {
+      this.setState({
+        foodSelected: true,
+        drinkSelected: false,
+      })
+    } else {
+      this.setState({
+        foodSelected: false,
+      })
+    }
   }
 
   handleClickDrink(e) {
     e.preventDefault();
 
-    this.setState({
-      foodSelected: false,
-      drinkSelected: true,
-    })
+    if (this.state.drinkSelected === false) {
+      this.setState({
+        foodSelected: false,
+        drinkSelected: true,
+      })
+    } else {
+      this.setState({
+        drinkSelected: false,
+      })
+    }
   }
 
   render() {
@@ -37,8 +49,15 @@ class FoodDrink extends React.Component {
     return (
       <div>
         <div>I'm feeling like
-          <span><button onClick={e => this.handleClickFood(e)}>{food}</button></span>
-          <span><button onClick={e => this.handleClickDrink(e)}>{drink}</button></span>
+
+          { this.state.drinkSelected === false &&
+            <span><button onClick={e => this.handleClickFood(e)}> having some {food}</button></span>
+          }
+
+          { this.state.foodSelected === false &&
+            <span><button onClick={e => this.handleClickDrink(e)}> having a {drink}</button></span>
+          }
+
         </div>
         { this.state.foodSelected === true &&
           <Continent />
