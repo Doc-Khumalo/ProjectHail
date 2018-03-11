@@ -1,4 +1,5 @@
 import React from 'react';
+import FoodDrink from '../FoodDrink/FoodDrink.component';
 
 class Home extends React.Component {
 
@@ -7,6 +8,7 @@ class Home extends React.Component {
       <div>
         <h1>Hail a Table</h1>
         <div>Welcome to our site</div>
+        <FoodDrink/>
       </div>
     )
   }
