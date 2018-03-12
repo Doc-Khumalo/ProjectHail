@@ -1,4 +1,5 @@
 import React from 'react';
+import CuisineList from '../../cuisine';
 
 class Cuisine extends React.Component {
   constructor(props) {
@@ -10,6 +11,10 @@ class Cuisine extends React.Component {
       'North America': [],
       'Europe': [],
     }
+  }
+
+  componentDidMount() {
+    const filteredContent = CuisineList.filter(item => (item[i]));
   }
 
   render() {

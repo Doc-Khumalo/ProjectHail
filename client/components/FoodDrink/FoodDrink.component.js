@@ -78,7 +78,10 @@ class FoodDrink extends React.Component {
 
         </div>
         { this.state.foodSelected === true &&
-          <Continent />
+          <Continent
+            food={this.props.food}
+            drink={this.props.drink}
+          />
         }
       </div>
     )
