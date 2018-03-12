@@ -1,37 +1,56 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom';
-// import { Provider } from 'react-redux';
-//
-// // main routes
-// import AppRoutes from '../routes';
-//
-// import store from '../store';
+// import { BrowserRouter } from 'react-router-dom';
+// import App from './App';
 //
 // ReactDOM.render(
-// <Provider store={store}>
-//   <AppRoutes />
-//   </Provider>,
-// document.getElementById('root')
-// )
+//   <BrowserRouter>
+//     <App />
+//   </BrowserRouter>
+//   , document.getElementById('root'));
 
 
-/* Import statements */
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-/* App is the entry point to the React code.*/
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
 import App from './App';
+import reducer from './redux/index';
+// import { getFoodAndDrinks } from './redux/foodAndDrink/actions';
 
-/* import BrowserRouter from 'react-router-dom' */
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  Link
-} from 'react-router-dom';
+// import { getCharacters } from './redux/characters/actions';
 
+// Create redux store
+const store = createStore(reducer, compose(
+  applyMiddleware(thunk),
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+));
+
+// Kick off things by getting all characters
+// store.dispatch(getFoodAndDrinks());
+
+// Create app
+const container = document.getElementById('root');
+
+// Render app
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-  , document.getElementById('root'));
+    <Provider store={store}>
+      <App />
+    </Provider>
+  , container
+);
+
+// Hot module reloading
+// if (module.hot) {
+//   module.hot.accept('./components/App', () => {
+//     ReactDOM.render(
+//       <AppContainer>
+//         <Provider store={store}>
+//           <App />
+//         </Provider>
+//       </AppContainer>
+//       , container
+//     );
+//   });
+// }

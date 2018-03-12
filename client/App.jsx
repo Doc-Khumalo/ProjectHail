@@ -7,18 +7,20 @@ class App extends Component {
   render() {
 
     return (
-      <div>
-        <nav className="navbar navbar-light">
-          <ul className="nav navbar-nav">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-          </ul>
-        </nav>
+      <div className="container">
+        {/*<nav className="navbar navbar-light">*/}
+          {/*<ul className="nav navbar-nav">*/}
+            {/*<li><Link to="/">Home</Link></li>*/}
+            {/*<li><Link to="/about">About</Link></li>*/}
+          {/*</ul>*/}
+        {/*</nav>*/}
 
-        <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route path="/about" component={About}/>
-        </Switch>
+        {/*<Switch>*/}
+          {/*<Route exact path="/" component={Home}/>*/}
+          {/*<Route path="/about" component={About}/>*/}
+        {/*</Switch>*/}
+
+        <Home/>
 
       </div>
     );

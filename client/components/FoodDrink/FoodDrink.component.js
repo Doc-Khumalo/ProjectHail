@@ -26,6 +26,15 @@ class FoodDrink extends React.Component {
         foodSelected: false,
       })
     }
+
+    const { food, drink } = this.state;
+
+    const dataToSend = {
+      food,
+      drink
+    }
+
+    this.props.getFoodAndDrinks(dataToSend);
   }
 
   handleClickDrink(e) {
@@ -41,6 +50,15 @@ class FoodDrink extends React.Component {
         drinkSelected: false,
       })
     }
+
+    const { food, drink } = this.state;
+
+    const dataToSend = {
+      food,
+      drink
+    }
+
+    this.props.getFoodAndDrinks(dataToSend);
   }
 
   render() {
@@ -68,4 +86,3 @@ class FoodDrink extends React.Component {
 }
 
 export default FoodDrink;
-;
