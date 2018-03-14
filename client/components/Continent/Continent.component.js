@@ -50,7 +50,9 @@ class Continent extends React.Component {
             <span>from </span>
             <button onClick={() => this.handleClickSelectedItem()}>{this.state.selectedItem}</button>
           </div>
-          <Cuisine/>
+          <Cuisine
+            selectedItem={this.state.selectedItem}
+          />
         </div>
         }
       </div>

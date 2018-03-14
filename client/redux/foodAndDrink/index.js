@@ -1,4 +1,6 @@
-import { SET_FOOD_DRINK } from './actions';
+/*
+  action
+ */
 
 const initialState = {
   food: null,
