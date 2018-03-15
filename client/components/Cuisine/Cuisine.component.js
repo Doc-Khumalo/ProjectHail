@@ -8,6 +8,8 @@ class Cuisine extends React.Component {
     this.state = {
       selectedCuisine: '',
       sentence: `${this.props.sentence} from ${this.props.selectedItem}`,
+      cuisineSelected: false,
+      cuisineItem: '',
       selectedItemDisplay: [],
       Asia: [
         'Chinese',
@@ -49,9 +51,24 @@ class Cuisine extends React.Component {
 
   }
 
+  handleClickSelectCuisine(item) {
+    this.setState({
+      cuisineSelected: true,
+      cuisineItem: item,
+      sentence: `${this.state.sentence} from ${item} cuisine`
+    })
+  }
+
+  handleSelectedItem() {
+    this.setState({
+      cuisineSelected: false,
+      cuisineItem: ''
+    })
+  }
+
   render() {
 
-    const { sentence } = this.state;
+    const {sentence, cuisineSelected, cuisineItem} = this.state;
 
     let cuisineToCheck;
 
@@ -82,13 +99,23 @@ class Cuisine extends React.Component {
         {sentence}
         {cuisineToCheck != undefined &&
         <div>
-          {cuisineToCheck.map(item => {
-            return (
-              <div>
-                <button>{item}</button>
-              </div>
-            )
-          })}
+          {cuisineSelected === false &&
+          <div>
+            {cuisineToCheck.map(item => {
+              return (
+                <div>
+                  <button onClick={() => this.handleClickSelectCuisine(item)}>{item}</button>
+                </div>
+              )
+            })}
+          </div>
+          }
+          {cuisineSelected === true && cuisineToCheck.length > 0 &&
+          <div>
+            <button onClick={() => this.handleSelectedItem()}>{cuisineItem}</button>
+            <div>{sentence}</div>
+          </div>
+          }
         </div>
         }
       </div>
