@@ -7,7 +7,6 @@ class Cuisine extends React.Component {
     super(props);
     this.state = {
       selectedCuisine: '',
-      sentence: `${this.props.sentence} from ${this.props.selectedItem}`,
       cuisineSelected: false,
       cuisineItem: '',
       selectedItemDisplay: [],
@@ -15,7 +14,7 @@ class Cuisine extends React.Component {
         'Chinese',
         'Japanese',
         'Indian',
-        'ThaiThai',
+        'Thai',
         'Turkish',
       ],
       Europe: [
@@ -26,11 +25,11 @@ class Cuisine extends React.Component {
         'Greek',
       ],
       Africa: [
-        'West Africa',
-        'East Africa',
-        'North Africa',
-        'South Africa',
-        'Central Africa',
+        'West African',
+        'East African',
+        'North African',
+        'Southern African',
+        'Central African',
       ],
       SouthAmerica: [
         'test1'
@@ -43,32 +42,36 @@ class Cuisine extends React.Component {
 
   componentDidMount() {
 
-    if (this.props.selectedItem) {
+    if (this.props.continent) {
       this.setState({
-        selectedCuisine: this.props.selectedItem
+        selectedCuisine: this.props.continent
       });
     }
 
   }
 
   handleClickSelectCuisine(item) {
+    if(item) {
+
+    }
     this.setState({
       cuisineSelected: true,
-      cuisineItem: item,
-      sentence: `${this.state.sentence} from ${item} cuisine`
+      cuisineItem: item
     })
   }
 
   handleSelectedItem() {
     this.setState({
       cuisineSelected: false,
-      cuisineItem: ''
+      cuisineItem: '',
     })
   }
 
   render() {
 
-    const { sentence, cuisineSelected, cuisineItem, selectedCuisine, Europe, Africa, Asia, NorthAmerica, SouthAmerica } = this.state;
+    const { cuisineSelected, cuisineItem, selectedCuisine, Europe, Africa, Asia, NorthAmerica, SouthAmerica } = this.state;
+
+    const { continent, food } = this.props;
 
     let cuisineToCheck;
 
@@ -94,9 +97,30 @@ class Cuisine extends React.Component {
       }
     }
 
+    let country;
+
+    if(continent === 'Asia'){
+      country = 'Asian'
+    }
+
+    if(continent === 'Africa'){
+      country = 'African'
+    }
+
+    if(continent === 'South America'){
+      country = 'South American'
+    }
+
+    if(continent === 'North America'){
+      country = 'North American'
+    }
+
+    if(continent === 'Europe'){
+      country = 'European'
+    }
+
     return (
       <div>
-        {sentence}
         {cuisineToCheck != undefined &&
         <div>
           {cuisineSelected === false &&
@@ -113,7 +137,8 @@ class Cuisine extends React.Component {
           {cuisineSelected === true && cuisineToCheck.length > 0 &&
           <div>
             <button onClick={() => this.handleSelectedItem()}>{cuisineItem}</button>
-            <div>{sentence}</div>
+            <div>{food} {continent} {cuisineItem}</div>
+            <h3>I'm feeling like {cuisineItem} {food} </h3>
           </div>
           }
         </div>

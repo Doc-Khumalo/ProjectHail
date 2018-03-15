@@ -6,7 +6,6 @@ class Continent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sentence: '',
       continents: [
         'Asia',
         'Africa',
@@ -15,7 +14,7 @@ class Continent extends React.Component {
         'Europe'
       ],
       continentSelected: null,
-      selectedItem: ''
+      continent: ''
     }
   }
 
@@ -23,24 +22,25 @@ class Continent extends React.Component {
     this.setState({
       sentence: `${this.props.sentence} some ${this.props.food}`,
       continentSelected: true,
-      selectedItem: item,
+      continent: item,
     })
   }
 
   handleClickSelectedItem() {
     this.setState({
-      selectedItem: ''
+      continent: ''
     })
   }
 
   render() {
 
-    const { sentence, selectedItem, continents, continentSelected } = this.state;
+    const { continent, continents, continentSelected } = this.state;
+    const { food } = this.props;
 
     return (
       <div>
-        {sentence}
-        {selectedItem.length < 1 &&
+
+        {continent.length < 1 &&
         <div>
           {continents.map(item => {
             return (
@@ -49,15 +49,14 @@ class Continent extends React.Component {
           })}
         </div>
         }
-        {continentSelected === true && selectedItem.length > 0 &&
+        {continentSelected === true && continent.length > 0 &&
         <div>
           <div>
-            <span>from </span>
-            <button onClick={() => this.handleClickSelectedItem()}>{selectedItem}</button>
+            <button onClick={() => this.handleClickSelectedItem()}>{continent}</button>
           </div>
           <Cuisine
-            selectedItem={selectedItem}
-            sentence={sentence}
+            continent={continent}
+            food={food}
           />
         </div>
         }

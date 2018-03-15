@@ -6,11 +6,11 @@ class FoodDrink extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      food: 'food',
-      drink: 'drink',
+      food: 'Food',
+      drink: 'Drink',
       foodSelected: false,
       drinkSelected: false,
-      sentence: 'I feel like having'
+      sentence: ''
     }
   }
 
@@ -73,19 +73,17 @@ class FoodDrink extends React.Component {
           <div>{sentence}</div>
 
           { this.state.drinkSelected === false &&
-            <span><button onClick={e => this.handleClickFood(e)}> some {food}</button></span>
+            <span><button onClick={e => this.handleClickFood(e)}>{food}</button></span>
           }
 
           { this.state.foodSelected === false &&
-            <span><button onClick={e => this.handleClickDrink(e)}> a {drink}</button></span>
+            <span><button onClick={e => this.handleClickDrink(e)}>{drink}</button></span>
           }
 
         </div>
         { this.state.foodSelected === true &&
           <Continent
             food={this.props.food}
-            drink={this.props.drink}
-            sentence={this.props.sentence}
           />
         }
       </div>
