@@ -20,12 +20,11 @@ class Continent extends React.Component {
   }
 
   handleClickContinent(item) {
-      this.setState({
-        sentence: `$this.props.sentence some $this.props.food`,
-        continentSelected: true,
-        selectedItem: item,
-      })
-console.error('@ sentence', this.state.sentence);
+    this.setState({
+      sentence: `${this.props.sentence} some ${this.props.food}`,
+      continentSelected: true,
+      selectedItem: item,
+    })
   }
 
   handleClickSelectedItem() {
@@ -35,27 +34,35 @@ console.error('@ sentence', this.state.sentence);
   }
 
   render() {
-    console.error('@ props', this.props.sentence);
+
+    const {
+      sentence,
+      selectedItem,
+      continents,
+      continentSelected
+    } = this.state;
+
     return (
       <div>
-        {this.state.sentence}
-        {this.state.selectedItem.length < 1 &&
+        {sentence}
+        {selectedItem.length < 1 &&
         <div>
-          {this.state.continents.map(item => {
+          {continents.map(item => {
             return (
               <button onClick={() => this.handleClickContinent(item)}>from {item}</button>
             )
           })}
         </div>
         }
-        {this.state.continentSelected === true && this.state.selectedItem.length > 0 &&
+        {continentSelected === true && selectedItem.length > 0 &&
         <div>
           <div>
             <span>from </span>
-            <button onClick={() => this.handleClickSelectedItem()}>{this.state.selectedItem}</button>
+            <button onClick={() => this.handleClickSelectedItem()}>{selectedItem}</button>
           </div>
           <Cuisine
-            selectedItem={this.state.selectedItem}
+            selectedItem={selectedItem}
+            sentence={sentence}
           />
         </div>
         }

@@ -69,14 +69,15 @@ class FoodDrink extends React.Component {
 
     return (
       <div>
-        <div>{sentence}
+        <div>
+          <div>{sentence}</div>
 
           { this.state.drinkSelected === false &&
-            <span><button onClick={e => this.handleClickFood(e)}> having some {food}</button></span>
+            <span><button onClick={e => this.handleClickFood(e)}> some {food}</button></span>
           }
 
           { this.state.foodSelected === false &&
-            <span><button onClick={e => this.handleClickDrink(e)}> having a {drink}</button></span>
+            <span><button onClick={e => this.handleClickDrink(e)}> a {drink}</button></span>
           }
 
         </div>

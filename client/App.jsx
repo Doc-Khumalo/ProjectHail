@@ -20,8 +20,8 @@ class App extends Component {
         {/*<Route path="/about" component={About}/>*/}
         {/*</Switch>*/}
 
-        <h1>Hail a Table</h1>
-        <div>Welcome to our site</div>
+        {/*<h1>Hail a Table</h1>*/}
+        {/*<div>Welcome to our site</div>*/}
 
         <Home/>
 

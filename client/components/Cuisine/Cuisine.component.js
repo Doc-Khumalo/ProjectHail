@@ -6,6 +6,8 @@ class Cuisine extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedCuisine: '',
+      sentence: `${this.props.sentence} from ${this.props.selectedItem}`,
       selectedItemDisplay: [],
       Asia: [
         'Chinese',
@@ -39,68 +41,56 @@ class Cuisine extends React.Component {
 
   componentDidMount() {
 
-
-    // const cuisines = ['Asia', 'Europe', 'Africa', 'South America', 'North America'];
-
-    // for (var key in cuisines) {
-    //   if (cuisines.hasOwnProperty(key)) {
-    //     console.error('@ yes', key); // key (ex. sandwich)
-    //
-    //     if (key === this.props.selectedItem) {
-    //       console.error('@ selected item', key);
-    //
-    //     }
-    //   }
-    // }
-
-  }
-
-  selectCuisine(){
-    if (this.props.selectedItem === 'Asia') {
+    if (this.props.selectedItem) {
       this.setState({
-        selectedItemDisplay: this.state.Asia
+        selectedCuisine: this.props.selectedItem
       });
     }
 
-    if (this.props.selectedItem === 'Africa') {
-      this.setState({
-        selectedItemDisplay: this.state.Africa
-      });
-    }
-
-    if (this.props.selectedItem === 'South America') {
-      this.setState({
-        selectedItemDisplay: this.state.SouthAmerica
-      });
-    }
-
-    if (this.props.selectedItem === 'North America') {
-      this.setState({
-        selectedItemDisplay: this.state.NorthAmerica
-      });
-    }
-
-    if (this.props.selectedItem === 'Europe') {
-      this.setState({
-        selectedItemDisplay: this.state.Europe
-      });
-    }
   }
 
   render() {
-    this.selectCuisine();
 
-    const {selectedItem} = this.props;
+    const { sentence } = this.state;
+
+    let cuisineToCheck;
+
+    if (this.state.selectedCuisine.length !== null) {
+      if (this.state.selectedCuisine === 'Europe') {
+        cuisineToCheck = this.state.Europe;
+      }
+
+      if (this.state.selectedCuisine === 'Asia') {
+        cuisineToCheck = this.state.Asia;
+      }
+
+      if (this.state.selectedCuisine === 'Africa') {
+        cuisineToCheck = this.state.Africa;
+      }
+
+      if (this.state.selectedCuisine === 'North America') {
+        cuisineToCheck = this.state.NorthAmerica;
+      }
+
+      if (this.state.selectedCuisine === 'South America') {
+        cuisineToCheck = this.state.SouthAmerica;
+      }
+    }
 
     return (
       <div>
-        {this.state.selectedItemDisplay.map(item => {
-          return (
-            <div>
-              <button>{item}</button>
-            </div>
-          )
-        })}
+        {sentence}
+        {cuisineToCheck != undefined &&
+        <div>
+          {cuisineToCheck.map(item => {
+            return (
+              <div>
+                <button>{item}</button>
+              </div>
+            )
+          })}
+        </div>
+        }
       </div>
     )
   }
