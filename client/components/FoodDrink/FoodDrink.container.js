@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
   return {
     food: state.foodAndDrink.food,
     drink: state.foodAndDrink.drink,
+    sentence: state.foodAndDrink.sentence,
   };
 };
 

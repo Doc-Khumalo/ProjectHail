@@ -6,6 +6,7 @@ class Continent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      sentence: '',
       continents: [
         'Asia',
         'Africa',
@@ -20,10 +21,11 @@ class Continent extends React.Component {
 
   handleClickContinent(item) {
       this.setState({
+        sentence: `$this.props.sentence some $this.props.food`,
         continentSelected: true,
-        selectedItem: item
+        selectedItem: item,
       })
-
+console.error('@ sentence', this.state.sentence);
   }
 
   handleClickSelectedItem() {
@@ -33,8 +35,10 @@ class Continent extends React.Component {
   }
 
   render() {
+    console.error('@ props', this.props.sentence);
     return (
       <div>
+        {this.state.sentence}
         {this.state.selectedItem.length < 1 &&
         <div>
           {this.state.continents.map(item => {

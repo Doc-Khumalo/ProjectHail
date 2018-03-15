@@ -5,5 +5,6 @@ export default (foodAndDrink) => ({
     payload: {
       food: foodAndDrink.food,
       drink: foodAndDrink.drink,
+      sentence: foodAndDrink.sentence,
     },
 });

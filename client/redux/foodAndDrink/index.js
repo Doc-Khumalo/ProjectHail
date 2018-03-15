@@ -4,7 +4,8 @@
 
 const initialState = {
   food: null,
-  drink: null
+  drink: null,
+  sentence: null
 };
 
 export default (state = initialState, action) => {
@@ -13,6 +14,7 @@ export default (state = initialState, action) => {
       return {
         food: action.payload.food,
         drink: action.payload.drink,
+        sentence: action.payload.sentence,
       }
     default:
       return state;

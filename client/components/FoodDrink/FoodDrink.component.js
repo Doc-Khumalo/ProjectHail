@@ -10,6 +10,7 @@ class FoodDrink extends React.Component {
       drink: 'drink',
       foodSelected: false,
       drinkSelected: false,
+      sentence: 'I feel like having'
     }
   }
 
@@ -27,11 +28,12 @@ class FoodDrink extends React.Component {
       })
     }
 
-    const { food, drink } = this.state;
+    const { food, drink, sentence } = this.state;
 
     const dataToSend = {
       food,
-      drink
+      drink,
+      sentence,
     }
 
     this.props.getFoodAndDrinks(dataToSend);
@@ -51,22 +53,23 @@ class FoodDrink extends React.Component {
       })
     }
 
-    const { food, drink } = this.state;
+    const { food, drink, sentence } = this.state;
 
     const dataToSend = {
       food,
-      drink
+      drink,
+      sentence
     }
 
     this.props.getFoodAndDrinks(dataToSend);
   }
 
   render() {
-    const {drink, food} = this.state;
+    const {drink, food, sentence} = this.state;
 
     return (
       <div>
-        <div>I'm feeling like
+        <div>{sentence}
 
           { this.state.drinkSelected === false &&
             <span><button onClick={e => this.handleClickFood(e)}> having some {food}</button></span>
@@ -81,6 +84,7 @@ class FoodDrink extends React.Component {
           <Continent
             food={this.props.food}
             drink={this.props.drink}
+            sentence={this.props.sentence}
           />
         }
       </div>
