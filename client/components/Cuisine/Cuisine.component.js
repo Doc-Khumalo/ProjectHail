@@ -68,29 +68,29 @@ class Cuisine extends React.Component {
 
   render() {
 
-    const {sentence, cuisineSelected, cuisineItem} = this.state;
+    const { sentence, cuisineSelected, cuisineItem, selectedCuisine, Europe, Africa, Asia, NorthAmerica, SouthAmerica } = this.state;
 
     let cuisineToCheck;
 
-    if (this.state.selectedCuisine.length !== null) {
-      if (this.state.selectedCuisine === 'Europe') {
-        cuisineToCheck = this.state.Europe;
+    if (selectedCuisine.length !== null) {
+      if (selectedCuisine === 'Europe') {
+        cuisineToCheck = Europe;
       }
 
-      if (this.state.selectedCuisine === 'Asia') {
-        cuisineToCheck = this.state.Asia;
+      if (selectedCuisine === 'Asia') {
+        cuisineToCheck = Asia;
       }
 
-      if (this.state.selectedCuisine === 'Africa') {
-        cuisineToCheck = this.state.Africa;
+      if (selectedCuisine === 'Africa') {
+        cuisineToCheck = Africa;
       }
 
-      if (this.state.selectedCuisine === 'North America') {
-        cuisineToCheck = this.state.NorthAmerica;
+      if (selectedCuisine === 'North America') {
+        cuisineToCheck = NorthAmerica;
       }
 
-      if (this.state.selectedCuisine === 'South America') {
-        cuisineToCheck = this.state.SouthAmerica;
+      if (selectedCuisine === 'South America') {
+        cuisineToCheck = SouthAmerica;
       }
     }
 

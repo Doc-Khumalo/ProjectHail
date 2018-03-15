@@ -35,12 +35,7 @@ class Continent extends React.Component {
 
   render() {
 
-    const {
-      sentence,
-      selectedItem,
-      continents,
-      continentSelected
-    } = this.state;
+    const { sentence, selectedItem, continents, continentSelected } = this.state;
 
     return (
       <div>
