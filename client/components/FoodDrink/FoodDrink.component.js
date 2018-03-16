@@ -1,5 +1,5 @@
 import React from 'react';
-import Continent from '../Continent/Continent.component';
+import Continent from '../Continent/Continent.container';
 
 class FoodDrink extends React.Component {
 

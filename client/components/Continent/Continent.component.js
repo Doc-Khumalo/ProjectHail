@@ -23,7 +23,17 @@ class Continent extends React.Component {
       sentence: `${this.props.sentence} some ${this.props.food}`,
       continentSelected: true,
       continent: item,
-    })
+    });
+
+    const { continents, continentsSelected, continent } = this.state;
+
+    const dataToSend = {
+      continents,
+      continentsSelected,
+      continent
+    }
+
+    this.props.getContinents(dataToSend);
   }
 
   handleClickSelectedItem() {

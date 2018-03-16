@@ -97,28 +97,6 @@ class Cuisine extends React.Component {
       }
     }
 
-    let country;
-
-    if(continent === 'Asia'){
-      country = 'Asian'
-    }
-
-    if(continent === 'Africa'){
-      country = 'African'
-    }
-
-    if(continent === 'South America'){
-      country = 'South American'
-    }
-
-    if(continent === 'North America'){
-      country = 'North American'
-    }
-
-    if(continent === 'Europe'){
-      country = 'European'
-    }
-
     return (
       <div>
         {cuisineToCheck != undefined &&
