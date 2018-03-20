@@ -69,8 +69,6 @@ class Cuisine extends React.Component {
   render() {
     this.updateDataStore();
 
-    console.error('@ this.props.continent', this.props.continent, this.props.food);
-
     const { cuisineSelected, cuisineItem, Europe, Africa, Asia, NorthAmerica, SouthAmerica } = this.state;
 
     let cuisineToCheck;
@@ -116,7 +114,7 @@ class Cuisine extends React.Component {
           {cuisineSelected === true && cuisineToCheck.length > 0 &&
           <div>
             <button onClick={() => this.handleSelectedItem()}>{this.state.cuisineItem}</button>
-            <h3>I'm feeling like {this.state.cuisineItem} {this.props.food} </h3>
+            <h3>I'm feeling like {cuisineItem} {this.props.food} </h3>
           </div>
           }
         </div>

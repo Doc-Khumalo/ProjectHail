@@ -46,19 +46,8 @@ class Continent extends React.Component {
   }
 
   render() {
-    // this.updateDataStore();
-
-    console.error('@ this.props.food', this.props.food);
-
+    this.updateDataStore();
     const { continent, continents, continentSelected } = this.state;
-
-    const dataToSend = {
-      continents,
-      continentSelected,
-      continent,
-    }
-
-    this.props.getContinents(dataToSend);
 
     return (
       <div>
