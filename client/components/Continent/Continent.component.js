@@ -1,5 +1,5 @@
 import React from 'react';
-import Cuisine from '../Cuisine/Cuisine.component';
+import Cuisine from '../Cuisine/Cuisine.container';
 
 class Continent extends React.Component {
 
@@ -13,6 +13,7 @@ class Continent extends React.Component {
         'North America',
         'Europe'
       ],
+      sentence: 'test',
       continentSelected: null,
       continent: ''
     }
@@ -20,20 +21,10 @@ class Continent extends React.Component {
 
   handleClickContinent(item) {
     this.setState({
-      sentence: `${this.props.sentence} some ${this.props.food}`,
+      sentence: '',
       continentSelected: true,
       continent: item,
     });
-
-    const { continents, continentsSelected, continent } = this.state;
-
-    const dataToSend = {
-      continents,
-      continentsSelected,
-      continent
-    }
-
-    this.props.getContinents(dataToSend);
   }
 
   handleClickSelectedItem() {
@@ -42,19 +33,40 @@ class Continent extends React.Component {
     })
   }
 
+  updateDataStore(){
+    const { continent, continents, continentSelected } = this.state;
+
+    const dataToSend = {
+      continents,
+      continentSelected,
+      continent,
+    }
+
+    this.props.getContinents(dataToSend);
+  }
+
   render() {
+    // this.updateDataStore();
+
+    console.error('@ this.props.food', this.props.food);
 
     const { continent, continents, continentSelected } = this.state;
-    const { food } = this.props;
+
+    const dataToSend = {
+      continents,
+      continentSelected,
+      continent,
+    }
+
+    this.props.getContinents(dataToSend);
 
     return (
       <div>
-
         {continent.length < 1 &&
         <div>
           {continents.map(item => {
             return (
-              <button onClick={() => this.handleClickContinent(item)}>from {item}</button>
+              <button onClick={() => this.handleClickContinent(item)}>{item}</button>
             )
           })}
         </div>
@@ -64,10 +76,15 @@ class Continent extends React.Component {
           <div>
             <button onClick={() => this.handleClickSelectedItem()}>{continent}</button>
           </div>
-          <Cuisine
-            continent={continent}
-            food={food}
-          />
+
+          {continentSelected === true &&
+            <Cuisine
+            food={this.props.food}
+            continentsToChoose={this.props.continentsToChoose}
+            checkContinentSelected={this.props.checkContinentSelected}
+            continentChosen={this.props.continentChosen}
+            />
+          }
         </div>
         }
       </div>

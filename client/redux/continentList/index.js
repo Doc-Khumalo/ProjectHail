@@ -3,18 +3,18 @@
  */
 
 const initialState = {
-  continents: null,
-  continentSelected: null,
-  continent: null
+  continentsToChoose: null,
+  checkContinentSelected: null,
+  continentChosen: null
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'SET_CONTINENTS':
       return {
-        continents: action.payload.continents,
-        continentSelected: action.payload.continentSelected,
-        continent: action.payload.continent,
+        continentsToChoose: action.payload.continents,
+        checkContinentSelected: action.payload.continentSelected,
+        continentChosen: action.payload.continent,
       }
     default:
       return state;

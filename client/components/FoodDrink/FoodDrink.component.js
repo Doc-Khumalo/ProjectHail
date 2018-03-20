@@ -52,7 +52,9 @@ class FoodDrink extends React.Component {
         drinkSelected: false,
       })
     }
+  }
 
+  updateDataStore() {
     const { food, drink, sentence } = this.state;
 
     const dataToSend = {
@@ -65,6 +67,7 @@ class FoodDrink extends React.Component {
   }
 
   render() {
+    this.updateDataStore();
     const {drink, food, sentence} = this.state;
 
     return (

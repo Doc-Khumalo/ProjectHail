@@ -6,9 +6,9 @@ import Continent from './Continent.component';
 
 const mapStateToProps = (state) => {
   return {
-    continents: state.continentList.continents,
-    continentSelected: state.continentList.continentSelected,
-    continent: state.continentList.continent,
+    continentsToChoose: state.continentList.continentsToChoose,
+    checkContinentSelected: state.continentList.checkContinentSelected,
+    continentChosen: state.continentList.continentChosen,
   };
 };
 
