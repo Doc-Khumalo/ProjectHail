@@ -33,7 +33,7 @@ class Continent extends React.Component {
     })
   }
 
-  updateDataStore(){
+  updateDataStore() {
     const { continent, continents, continentSelected } = this.state;
 
     const dataToSend = {

@@ -8,38 +8,41 @@ class Cuisine extends React.Component {
     this.state = {
       cuisineSelected: false,
       cuisineItem: '',
-      Asia: [
-        'Chinese',
-        'Japanese',
-        'Indian',
-        'Thai',
-        'Turkish',
-      ],
-      Europe: [
-        'Spanish',
-        'British',
-        'Italian',
-        'French',
-        'Greek',
-      ],
-      Africa: [
-        'West African',
-        'East African',
-        'North African',
-        'South African',
-        'Central African',
-      ],
-      SouthAmerica: [
-        'test1'
-      ],
-      NorthAmerica: [
-        'test 2'
-      ]
-    }
+      cuisineToCheck: '',
+      cuisineContinents: [
+        Asia: [
+          'Chinese',
+          'Japanese',
+          'Indian',
+          'Thai',
+          'Turkish',
+        ],
+        Europe: [
+          'Spanish',
+          'British',
+          'Italian',
+          'French',
+          'Greek',
+        ],
+        Africa: [
+          'West African',
+          'East African',
+          'North African',
+          'South African',
+          'Central African',
+        ],
+        SouthAmerica: [
+          'test1'
+        ],
+        NorthAmerica: [
+          'test 2'
+        ]
+      },
+    ]
   }
 
   handleClickSelectCuisine(item) {
-    if(item) {
+    if (item) {
 
     }
     this.setState({
@@ -57,10 +60,11 @@ class Cuisine extends React.Component {
 
 
   updateDataStore() {
-    const { cuisineItem } = this.state;
+    const { cuisineItem, cuisineToCheck } = this.state;
 
     const dataToSend = {
-      cuisineItem
+      cuisineItem,
+      cuisineToCheck
     }
 
     this.props.getCuisines(dataToSend)
@@ -69,29 +73,39 @@ class Cuisine extends React.Component {
   render() {
     this.updateDataStore();
 
-    const { cuisineSelected, cuisineItem, Europe, Africa, Asia, NorthAmerica, SouthAmerica } = this.state;
+    const { cuisineSelected, cuisineItem, cuisineContinents, cuisineToCheck } = this.state;
 
-    let cuisineToCheck;
+    // let cuisineToCheck;
 
     if (this.props.continentChosen !== null || this.props.continentChosen !== undefined) {
       if (this.props.continentChosen === 'Europe') {
-        cuisineToCheck = Europe;
+        this.setState({
+          cuisineToCheck: this.state.cuisineContinents.Europe
+        });
       }
 
       if (this.props.continentChosen === 'Asia') {
-        cuisineToCheck = Asia;
+        this.setState({
+          cuisineToCheck: this.state.cuisineContinents.Asia
+        });
       }
 
       if (this.props.continentChosen === 'Africa') {
-        cuisineToCheck = Africa;
+        this.setState({
+          cuisineToCheck: this.state.cuisineContinents.Africa
+        });
       }
 
       if (this.props.continentChosen === 'North America') {
-        cuisineToCheck = NorthAmerica;
+        this.setState({
+          cuisineToCheck: this.state.cuisineContinents.NorthAmerica
+        });
       }
 
       if (this.props.continentChosen === 'South America') {
-        cuisineToCheck = SouthAmerica;
+        this.setState({
+          cuisineToCheck: this.state.cuisineContinents.SouthAmerica
+        });
       }
     }
 
@@ -100,7 +114,7 @@ class Cuisine extends React.Component {
       <div>
         {cuisineToCheck != undefined &&
         <div>
-          {cuisineSelected === false &&
+          {cuisineSelected === false && cuisineToCheck.length > 0 &&
           <div>
             {cuisineToCheck.map(item => {
               return (
