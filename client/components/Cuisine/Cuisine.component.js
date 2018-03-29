@@ -8,35 +8,35 @@ class Cuisine extends React.Component {
     this.state = {
       cuisineSelected: false,
       cuisineItem: '',
-      cuisineToCheck: '',
-      cuisineContinents: [{
-        Asia:{
-          Locale: 'Chinese',
-          Locale: 'Japanese',
-          Locale: 'Indian',
-          Locale: 'Thai',
-          Locale: 'Turkish',
-        },
-        Europe:{
-          Locale: 'Spanish',
-          Locale: 'British',
-          Locale: 'Italian',
-          Locale: 'French',
-          Locale: 'Greek'
-        },
-        Africa:{
-          Locale: 'West African',
-          Locale: 'East African',
-          Locale: 'North African',
-          Locale: 'South African',
-          Locale: 'Mediterrean'
-        },
-        SouthAmerica:{
-          Locale: 'test1',
-          Locale: 'test2'
-        },
-        NorthAmerica:{},
-      }],
+      cuisineToCheck: [],
+      cuisineContinents: {
+        Asia:[
+           'Chinese',
+           'Japanese',
+           'Indian',
+           'Thai',
+           'Turkish',
+        ],
+        Europe:[
+          'Spanish',
+          'British',
+          'Italian',
+          'French',
+          'Greek'
+        ],
+        Africa:[
+          'West African',
+          'East African',
+          'North African',
+          'South African',
+          'Mediterrean'
+        ],
+        SouthAmerica:[
+          'test1',
+          'test2'
+        ],
+        NorthAmerica:[],
+      },
     }
   }
 
@@ -72,42 +72,31 @@ class Cuisine extends React.Component {
   render() {
     this.updateDataStore();
 
-    const { cuisineSelected, cuisineItem, cuisineContinents, cuisineToCheck } = this.state;
+    const { cuisineSelected, cuisineItem, cuisineContinents } = this.state;
 
-    // let cuisineToCheck;
+    let cuisineToCheck;
 
     if (this.props.continentChosen !== null || this.props.continentChosen !== undefined) {
       if (this.props.continentChosen === 'Europe') {
-        this.setState({
-          cuisineToCheck: this.state.cuisineContinents.Europe
-        });
+          cuisineToCheck = cuisineContinents.Europe;
       }
 
       if (this.props.continentChosen === 'Asia') {
-        this.setState({
-          cuisineToCheck: this.state.cuisineContinents.Asia
-        });
+        cuisineToCheck = cuisineContinents.Asia
       }
 
       if (this.props.continentChosen === 'Africa') {
-        this.setState({
-          cuisineToCheck: this.state.cuisineContinents.Africa
-        });
+          cuisineToCheck = cuisineContinents.Africa;
       }
 
       if (this.props.continentChosen === 'North America') {
-        this.setState({
-          cuisineToCheck: this.state.cuisineContinents.NorthAmerica
-        });
+          cuisineToCheck = cuisineContinents.NorthAmerica;
       }
 
       if (this.props.continentChosen === 'South America') {
-        this.setState({
-          cuisineToCheck: this.state.cuisineContinents.SouthAmerica
-        });
+          cuisineToCheck = cuisineContinents.SouthAmerica;
       }
     }
-
 
     return (
       <div>

@@ -68,10 +68,10 @@ class Continent extends React.Component {
 
           {continentSelected === true &&
             <Cuisine
-            food={this.props.food}
-            continentsToChoose={this.props.continentsToChoose}
-            checkContinentSelected={this.props.checkContinentSelected}
-            continentChosen={this.props.continentChosen}
+              food={this.props.food}
+              continentsToChoose={this.props.continentsToChoose}
+              checkContinentSelected={this.props.checkContinentSelected}
+              continentChosen={this.props.continentChosen}
             />
           }
         </div>
