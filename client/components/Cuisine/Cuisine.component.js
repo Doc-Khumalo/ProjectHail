@@ -9,36 +9,35 @@ class Cuisine extends React.Component {
       cuisineSelected: false,
       cuisineItem: '',
       cuisineToCheck: '',
-      cuisineContinents: [
-        Asia: [
-          'Chinese',
-          'Japanese',
-          'Indian',
-          'Thai',
-          'Turkish',
-        ],
-        Europe: [
-          'Spanish',
-          'British',
-          'Italian',
-          'French',
-          'Greek',
-        ],
-        Africa: [
-          'West African',
-          'East African',
-          'North African',
-          'South African',
-          'Central African',
-        ],
-        SouthAmerica: [
-          'test1'
-        ],
-        NorthAmerica: [
-          'test 2'
-        ]
-      },
-    ]
+      cuisineContinents: [{
+        Asia:{
+          Locale: 'Chinese',
+          Locale: 'Japanese',
+          Locale: 'Indian',
+          Locale: 'Thai',
+          Locale: 'Turkish',
+        },
+        Europe:{
+          Locale: 'Spanish',
+          Locale: 'British',
+          Locale: 'Italian',
+          Locale: 'French',
+          Locale: 'Greek'
+        },
+        Africa:{
+          Locale: 'West African',
+          Locale: 'East African',
+          Locale: 'North African',
+          Locale: 'South African',
+          Locale: 'Mediterrean'
+        },
+        SouthAmerica:{
+          Locale: 'test1',
+          Locale: 'test2'
+        },
+        NorthAmerica:{},
+      }],
+    }
   }
 
   handleClickSelectCuisine(item) {
