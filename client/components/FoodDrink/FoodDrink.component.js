@@ -27,16 +27,6 @@ class FoodDrink extends React.Component {
         foodSelected: false,
       })
     }
-
-    const { food, drink, sentence } = this.state;
-
-    const dataToSend = {
-      food,
-      drink,
-      sentence,
-    }
-
-    this.props.getFoodAndDrinks(dataToSend);
   }
 
   handleClickDrink(e) {
@@ -87,6 +77,7 @@ class FoodDrink extends React.Component {
         { this.state.foodSelected === true &&
           <Continent
             food={this.props.food}
+            sentence={sentence}
           />
         }
       </div>
