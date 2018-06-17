@@ -1,7 +1,9 @@
 import React from 'react';
-import Cuisine from '../Cuisine/Cuisine.container';
+import Cuisine from '../Cuisine/Cuisine.component';
+import {getContinents, getFoodAndDrinks} from "../../redux/actions";
+import {connect} from "react-redux";
 
-class Continent extends React.Component {
+export class Continent extends React.Component {
 
   constructor(props) {
     super(props);
@@ -40,7 +42,7 @@ class Continent extends React.Component {
       continents,
       continentSelected,
       continent,
-    }
+    };
 
     this.props.getContinents(dataToSend);
   }
@@ -49,6 +51,7 @@ class Continent extends React.Component {
     this.updateDataStore();
     const { continent, continents, continentSelected } = this.state;
 
+    console.log('Cuisines', this.props);
     return (
       <div>
         {continent.length < 1 &&
@@ -68,10 +71,7 @@ class Continent extends React.Component {
 
           {continentSelected === true &&
             <Cuisine
-              food={this.props.food}
-              continentsToChoose={this.props.continentsToChoose}
-              checkContinentSelected={this.props.checkContinentSelected}
-              continentChosen={this.props.continentChosen}
+              items={this.props.items}
             />
           }
         </div>
@@ -81,4 +81,14 @@ class Continent extends React.Component {
   }
 }
 
-export default Continent;
+const mapStateToProps = (state) => {
+  return {
+    items: state.reducer.items
+  };
+};
+
+const mapDispatchToProps = {
+  getContinents,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Continent);

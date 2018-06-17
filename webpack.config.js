@@ -16,7 +16,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['*', '.js', '.jsx', '.css', '.scss'],
   },
   devtool: 'source-map',
   module: {
@@ -34,6 +34,36 @@ module.exports = {
         enforce: "pre",
         loader: 'babel-loader',
 
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          { loader: 'sass-loader', options: { sourceMap: true } }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          { loader: 'sass-loader', options: { sourceMap: true } }
+        ]
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "babel-loader"
+          },
+          {
+            loader: "react-svg-loader",
+            options: {
+              jsx: true // true outputs JSX tags
+            }
+          }
+        ]
       }
     ],
   },

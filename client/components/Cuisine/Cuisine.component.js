@@ -1,8 +1,10 @@
 import React from 'react';
+import {connect} from "react-redux";
+import { getCuisines } from '../../redux/actions';
 
 // import cuisines from '../../cuisine';
 
-class Cuisine extends React.Component {
+export class Cuisine extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,13 +43,21 @@ class Cuisine extends React.Component {
   }
 
   handleClickSelectCuisine(item) {
-    if (item) {
+    // this.setState({
+    //   cuisineSelected: true,
+    //   cuisineItem: item
+    // });
 
-    }
-    this.setState({
-      cuisineSelected: true,
-      cuisineItem: item
-    })
+    this.state.cuisineSelected = true;
+    this.state.cuisineItem = item;
+
+    const { cuisineSelected, cuisineItem } = this.state;
+    const dataToSend = {
+      cuisineSelected,
+      cuisineItem
+    };
+
+    this.props.getCuisines(dataToSend)
   }
 
   handleSelectedItem() {
@@ -57,50 +67,37 @@ class Cuisine extends React.Component {
     })
   }
 
-
-  updateDataStore() {
-    const { cuisineItem, cuisineToCheck } = this.state;
-
-    const dataToSend = {
-      cuisineItem,
-      cuisineToCheck
-    }
-
-    this.props.getCuisines(dataToSend)
-  }
-
   render() {
-    this.updateDataStore();
 
     const { cuisineSelected, cuisineItem, cuisineContinents } = this.state;
 
     let cuisineToCheck;
 
-    if (this.props.continentChosen !== null || this.props.continentChosen !== undefined) {
-      if (this.props.continentChosen === 'Europe') {
+    if (this.props.items.continentList.continentSelected !== null || this.props.items.continentList.continentSelected !== undefined) {
+      if (this.props.items.continentList.continent === 'Europe') {
           cuisineToCheck = cuisineContinents.Europe;
       }
 
-      if (this.props.continentChosen === 'Asia') {
+      if (this.props.items.continentList.continent === 'Asia') {
         cuisineToCheck = cuisineContinents.Asia
       }
 
-      if (this.props.continentChosen === 'Africa') {
+      if (this.props.items.continentList.continent === 'Africa') {
           cuisineToCheck = cuisineContinents.Africa;
       }
 
-      if (this.props.continentChosen === 'North America') {
+      if (this.props.items.continentList.continent === 'North America') {
           cuisineToCheck = cuisineContinents.NorthAmerica;
       }
 
-      if (this.props.continentChosen === 'South America') {
+      if (this.props.items.continentList.continent === 'South America') {
           cuisineToCheck = cuisineContinents.SouthAmerica;
       }
     }
 
     return (
       <div>
-        {cuisineToCheck != undefined &&
+        {cuisineToCheck !== undefined &&
         <div>
           {cuisineSelected === false && cuisineToCheck.length > 0 &&
           <div>
@@ -113,12 +110,16 @@ class Cuisine extends React.Component {
             })}
           </div>
           }
-          {cuisineSelected === true && cuisineToCheck.length > 0 &&
+          <div>
+          {this.props.items.cuisineList.cuisineSelected === true &&
+          cuisineToCheck.length > 0 &&
           <div>
             <button onClick={() => this.handleSelectedItem()}>{this.state.cuisineItem}</button>
-            <h3>I'm feeling like {cuisineItem} {this.props.food} </h3>
+            <h1>gsjvhcavcj</h1>
+            <h3>Today at {this.props.items.date} I am feeling like {this.props.items.cuisineList.cuisineItem} {this.props.items.foodAndDrink.food} </h3>
           </div>
           }
+          </div>
         </div>
         }
       </div>
@@ -126,4 +127,14 @@ class Cuisine extends React.Component {
   }
 }
 
-export default Cuisine;
+const mapStateToProps = (state) => {
+  return {
+    items: state.reducer.items
+  };
+};
+
+const mapDispatchToProps = {
+  getCuisines,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cuisine);
