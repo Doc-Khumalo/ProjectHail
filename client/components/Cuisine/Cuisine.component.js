@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
 import { getCuisines } from '../../redux/actions';
+import './Cuisine.css';
+import {Sentence} from "../Sentence/Sentence.component";
 
 // import cuisines from '../../cuisine';
 
@@ -39,7 +41,20 @@ export class Cuisine extends React.Component {
         ],
         NorthAmerica:[],
       },
+      stuff: ''
     }
+  }
+
+  componentWillUpdate() {
+    this.setState({
+      stuff: 'stuff'
+    })
+  }
+
+  componentWillReceiveProps() {
+    this.setState({
+      stuff: 'stuff props'
+    })
   }
 
   handleClickSelectCuisine(item) {
@@ -98,30 +113,32 @@ export class Cuisine extends React.Component {
     return (
       <div>
         {cuisineToCheck !== undefined &&
-        <div>
+        <div className="Cuisine-Wrapper">
           {cuisineSelected === false && cuisineToCheck.length > 0 &&
           <div>
             {cuisineToCheck.map(item => {
               return (
-                <div>
-                  <button onClick={() => this.handleClickSelectCuisine(item)}>{item}</button>
-                </div>
+                <button
+                  className="btn btn-default btn-lg btn-block" type="submit"
+                  onClick={() => this.handleClickSelectCuisine(item)}>{item}
+                </button>
               )
             })}
           </div>
           }
-          <div>
           {this.props.items.cuisineList.cuisineSelected === true &&
-          cuisineToCheck.length > 0 &&
           <div>
-            <button onClick={() => this.handleSelectedItem()}>{this.state.cuisineItem}</button>
-            <h1>gsjvhcavcj</h1>
-            <h3>Today at {this.props.items.date} I am feeling like {this.props.items.cuisineList.cuisineItem} {this.props.items.foodAndDrink.food} </h3>
+            <button
+              className="btn btn-default btn-lg btn-block" type="submit"
+              onClick={() => this.handleSelectedItem()}>{this.state.cuisineItem}
+            </button>
           </div>
           }
-          </div>
-        </div>
+         </div>
         }
+        <Sentence
+          props={this.props}
+        />
       </div>
     )
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import Continent from '../Continent/Continent.component';
 import { getFoodAndDrinks } from "../../redux/actions";
 import {connect} from "react-redux";
+import './FoodDrink.css';
 
 export class FoodAndDrink extends React.Component {
 
@@ -71,17 +72,26 @@ export class FoodAndDrink extends React.Component {
         <div>
           <div>{sentence}</div>
 
-          { this.state.drinkSelected === false &&
-            <span><button onClick={e => this.handleClickFood(e)}>{food}</button></span>
-          }
+          <p className="Button-Block">
+            { this.state.drinkSelected === false &&
+              <button
+                className="btn btn-default btn-lg btn-block" type="submit"
+                onClick={e => this.handleClickFood(e)}>{food}
+              </button>
+            }
 
-          { this.state.foodSelected === false &&
-            <span><button onClick={e => this.handleClickDrink(e)}>{drink}</button></span>
-          }
+            { this.state.foodSelected === false &&
+              <button
+                className="btn btn-default btn-lg btn-block" type="submit"
+                onClick={e => this.handleClickDrink(e)}>{drink}
+              </button>
+            }
+          </p>
 
         </div>
         { this.state.foodSelected === true &&
           <Continent
+            location={this.props.location}
             items={this.props.items}
           />
         }

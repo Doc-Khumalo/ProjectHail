@@ -58,7 +58,10 @@ export class Continent extends React.Component {
         <div>
           {continents.map(item => {
             return (
-              <button onClick={() => this.handleClickContinent(item)}>{item}</button>
+              <button
+                className="btn btn-default btn-lg btn-block" type="submit"
+                onClick={() => this.handleClickContinent(item)}>{item}
+              </button>
             )
           })}
         </div>
@@ -66,11 +69,15 @@ export class Continent extends React.Component {
         {continentSelected === true && continent.length > 0 &&
         <div>
           <div>
-            <button onClick={() => this.handleClickSelectedItem()}>{continent}</button>
+            <button
+              className="btn btn-default btn-lg btn-block" type="submit"
+              onClick={() => this.handleClickSelectedItem()}>{continent}
+            </button>
           </div>
 
           {continentSelected === true &&
             <Cuisine
+              location={this.props.location}
               items={this.props.items}
             />
           }
